@@ -31,11 +31,12 @@ function Login() {
           console.log('Success:', data);
   
           if (data === true) {
-            navigate('/Attendance');
-          } else {
+            navigate('/Attendance', { state: { username } });
+        } else {
             navigate('/');
             console.log('Invalid login credentials');
-          }
+        }
+        
         } else {
           console.log('Error:', response.statusText);
         }
