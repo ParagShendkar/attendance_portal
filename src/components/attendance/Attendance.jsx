@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Attendance() {
   const location = useLocation();
@@ -68,7 +68,14 @@ function Attendance() {
         Sign In
       </button>
       <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 transition-colors duration-300">
-        View Report
+        <Link 
+          to={{
+            pathname: '/AttendanceReport',
+            state: { username: username }  // Passing the username to AttendanceReport
+          }}
+        >
+          View Report
+        </Link>
       </button>
     </div>
   );

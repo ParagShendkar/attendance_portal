@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function AttendanceReport() {
   const [attendanceData, setAttendanceData] = useState([]);
-  const studentName = 'yourStudentName'; // Replace with the actual student name or pass it as a prop
+  
+  const location = useLocation();
+  const studentName = location.state?.username || 'defaultStudentName'; // Replace 'defaultStudentName' with a fallback if needed
 
   useEffect(() => {
     fetch(`http://localhost:8080/attendance_page/get_attendance_report/${studentName}`)
@@ -13,7 +16,7 @@ function AttendanceReport() {
 
   return (
     <div className="max-w-lg mx-auto flex flex-col items-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Attendance Report</h1>
+      <h1 className="text-2xl font-bold mb-4">Attendance Report for {studentName}</h1>
       <div className="overflow-x-auto w-full">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-gray-100">
